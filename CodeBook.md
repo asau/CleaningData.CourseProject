@@ -13,7 +13,7 @@ The variables chosen in the data frame were the variables with mean and std in t
 Merged the subject_train.txt, y_train, X_train, and the same for test respectively into train and test data.frames.
 
 *Removing unwanted characters in the column names
-The function gsub was used to remove brackets and dashes in the variable names, and to replace the dashes with period signs. These names, along with "Subject" and "Activity", were then used for the column names in the test and train data frames.
+The function gsub was used to remove brackets and dashes in the variable names, and to change the t's and f's at the beginning of each variable to be time and frequency respectively. 'mean' was changed to be "Mean" and "std" was changed to be "Std" to comply with Camel case. This was used because the variable names were not easily read/recognizable with just lower case variable names. These names, along with "Subject" and "Activity", were then used for the column names in the test and train data frames. 
 
 *Merging the test and train data.frames
 The data frames were merged using rbind

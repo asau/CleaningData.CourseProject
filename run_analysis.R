@@ -1,4 +1,4 @@
-setwd("/Users/alvinau/Documents/School/Coursera/Cleaning_Data/Course Project/UCI HAR Dataset")
+setwd("/Users/alvinau/Documents/School/Coursera/Cleaning_Data/Course_Project/UCI_HAR_Dataset")
 
 #reading data in test set
 subject.test<-read.table("./test/subject_test.txt",sep=" ")
@@ -53,8 +53,12 @@ train<-data.frame(X.train.imp,subject.train,y.train.renamed)
 
 #getting and fixing the column names to remove brackets and "-"s
 X.names<-as.character(features$V2[c(mean.index,std.index)])
-X.names<-gsub(pattern="-",replacement=".",X.names)
+X.names<-gsub(pattern="-",replacement="",X.names)
 X.names<-gsub(pattern="()",replacement="",X.names,fixed=TRUE)
+X.names<-gsub(pattern="mean",replacement="Mean",X.names,fixed=TRUE)
+X.names<-gsub(pattern="std",replacement="Std",X.names,fixed=TRUE)
+X.names<-sub(pattern="^t",replacement="Time",X.names)
+X.names<-sub(pattern="^f",replacement="Frequency",X.names)
 
 names(test)<-c(X.names,"Subject","Activity")
 names(train)<-c(X.names,"Subject","Activity")
@@ -69,3 +73,4 @@ aggdata <-aggregate(merged[,-c(67,68)], by=list("Subject"=merged$Subject,"Activi
 
 #saving the tidy data set to a file
 write.table(aggdata,file="tidyData.txt",col.names=TRUE)
+
